@@ -10,21 +10,37 @@
   <url>http://maven.apache.org</url>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <configuration>
-          <mainClass>info.maigo.lab.hello.App</mainClass>
-          <arguments>
-            <argument>niwasawa</argument>
-            <argument>maigolab</argument>
-          </arguments>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+  <plugins>
+    <!-- For running from mvn exec:java -->
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>1.6.0</version>
+      <configuration>
+        <mainClass>info.maigo.lab.hello.App</mainClass>
+        <arguments>
+          <argument>niwasawa</argument>
+          <argument>maigolab</argument>
+        </arguments>
+      </configuration>
+    </plugin>
+
+    <!-- For creating a JAR with proper Main-Class -->
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.2.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>info.maigo.lab.hello.App</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
 
   <dependencies>
 
